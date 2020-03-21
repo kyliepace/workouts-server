@@ -11,9 +11,11 @@ module.exports = passport => {
   // router.get('/user/*', requireAuth, (ctx) => {
   //   ctx.body = "Welcome! To the Koala Book of Everything!"
   // });
+  router.delete('wod/:id', workout.delete);
 
   router.get('/wods', workout.get);
   router.post('/wod', workout.add);
+  router.put('/wod', workout.update);
 
   router.post('/register', Authentication.signup);
 

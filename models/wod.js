@@ -12,6 +12,7 @@ var wodSchema = mongoose.Schema({
     enum: sectionEnum
   },
   name: String,
+  doAtHome: Boolean,
   type: {
     type: String,
     enum: typeEnum
@@ -28,6 +29,7 @@ var wodSchema = mongoose.Schema({
     type: String,
     enum: unitsEnum
   },
+  tags: [String],
   movements: {
     type: [{
       movement: String,
