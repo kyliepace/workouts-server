@@ -1,5 +1,4 @@
-import * as functions from 'firebase-functions';
-import mongoService from './services/MongoService';
+
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -8,8 +7,6 @@ import mongoService from './services/MongoService';
 //  response.send("Hello from Firebase!");
 // });
 
-export const getWods = functions.https.onRequest(async (request, response) => {
-  console.log('hi');
-  const wods : any[] = await mongoService.get();
-  response.send(wods);
-});
+export const getWods = require('./functions/getWods').default;
+export const addWod = require('./functions/addWod').default;
+export const editWod = require('./functions/editWod').default;

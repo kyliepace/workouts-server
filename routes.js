@@ -1,36 +1,36 @@
-'use strict';
-const Authentication = require('./controllers/auth');
-const workout = require('./controllers/workout');
-const koaRouter = require('koa-router');
+// 'use strict';
+// const Authentication = require('./controllers/auth');
+// const workout = require('./controllers/workout');
+// const koaRouter = require('koa-router');
 
 
-module.exports = passport => {
-  const router = new koaRouter();
-  // const requireAuth = passport.authenticate('jwt', { session: false });
+// module.exports = passport => {
+//   const router = new koaRouter();
+//   // const requireAuth = passport.authenticate('jwt', { session: false });
 
-  // router.get('/user/*', requireAuth, (ctx) => {
-  //   ctx.body = "Welcome! To the Koala Book of Everything!"
-  // });
-  router.delete('wod/:id', workout.delete);
+//   // router.get('/user/*', requireAuth, (ctx) => {
+//   //   ctx.body = "Welcome! To the Koala Book of Everything!"
+//   // });
+//   router.delete('wod/:id', workout.delete);
 
-  router.get('/wods', workout.get);
-  router.post('/wod', workout.add);
-  router.put('/wod', workout.update);
+//   router.get('/wods', workout.get);
+//   router.post('/wod', workout.add);
+//   router.put('/wod', workout.update);
 
-  router.post('/register', Authentication.signup);
+//   router.post('/register', Authentication.signup);
 
-  router.get('/logout', async (ctx) => {
-    if (ctx.isAuthenticated()) {
-      ctx.logout();
-      //ctx.redirect('/auth/login');
-    } else {
-      ctx.body = { success: false };
-      ctx.throw(401);
-    }
-  });
-  router.post('/auth/login', Authentication.local(passport));
-  router.post('/auth/facebook', Authentication.facebook(passport));
-  router.post('/auth/google', Authentication.google(passport));
+//   router.get('/logout', async (ctx) => {
+//     if (ctx.isAuthenticated()) {
+//       ctx.logout();
+//       //ctx.redirect('/auth/login');
+//     } else {
+//       ctx.body = { success: false };
+//       ctx.throw(401);
+//     }
+//   });
+//   router.post('/auth/login', Authentication.local(passport));
+//   router.post('/auth/facebook', Authentication.facebook(passport));
+//   router.post('/auth/google', Authentication.google(passport));
 
-  return router;
-}
+//   return router;
+// }

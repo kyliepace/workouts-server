@@ -1,2 +1,9 @@
-/node_modules
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
 .env
+# Typescript v1 declaration files
+typings/
+functions/lib
+functions/node_modules
+node_modules/
