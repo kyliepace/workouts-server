@@ -1,33 +1,29 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import * as functions from 'firebase-functions';
 
 class MongoService {
-  connected: boolean = false;
-  private uri: string;
 
   constructor() {
     const DB_USER = functions.config().mongo.user;
     const DB_PASSWORD = functions.config().mongo.password;
     const DB_HOST = functions.config().mongo.host;
     const DB_NAME = functions.config().mongo.name;
-    this.uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
+    const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
+    mongoose.connect(uri, {
+      useNewUrlParser: true
+    }, (err) => {
+      if (err) {
+        console.log(err.message);
+      }
+      else {
+        console.log('connected to mongodb');
+      }
+    })
   }
 
-  async connect() {
-    try {
-      await mongoose.connect(this.uri, {
-        useNewUrlParser: true
-      });
-      console.log('Connected to MongoDb');
-      this.connected = true;
-    }
-    catch(err) {
-      console.log(err.message);
-    }
-  }
 
   status() {
-    return this.connected ? console.log('mongo db connected') : null;
+    console.log('mongo status');
   }
 };
 

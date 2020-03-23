@@ -5,9 +5,14 @@ export async function getWods(): Promise<WodDoc[]> {
   return Wod.find().select({__v: false}).lean();
 };
 
-export async function addWod(wod: WodProps): Promise<WodDoc> {
-  const newWod = new Wod(wod);
+export async function addWod(wod: any): Promise<any> {
+  const newone = JSON.parse(wod);
+  console.log(typeof newone);
+  console.log(newone)
+  const newWod = new Wod(newone);
   await newWod.save();
+  console.log(newWod);
+
   return newWod;
 }
 

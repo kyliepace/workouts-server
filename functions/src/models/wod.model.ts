@@ -1,7 +1,7 @@
 import { createSchema, Type, typedModel, ExtractDoc, ExtractProps } from 'ts-mongoose';
 
-const typeEnum = ['time', 'emom', 'rounds', 'amrap', 'reps', 'sets', 'rft', 'cals', 'distance'] as const;
-const unitsEnum = ['ft', 'kg', 'lbs', 'm', 'km', 'mi'] as const;
+const typeEnum = ['reps each round', 'time', 'emom', 'rounds', 'amrap', 'reps', 'sets', 'rft', 'cals', 'distance'] as const;
+const unitsEnum = ['', 'ft', 'kg', 'lbs', 'm', 'km', 'mi'] as const;
 const sectionEnum = ['warmup', 'skill', 'barbell', 'accessory', 'wod'] as const;
 
 
@@ -10,29 +10,29 @@ const MovementSchema = createSchema(
     type: Type.string({ required: true, enum: typeEnum }),
     movement: Type.string(),
     time: Type.string(),
-    reps: Type.number(),
+    reps: Type.mixed(),
     sets: Type.number(),
     rounds: Type.number(),
     cals: Type.number(),
     distance: Type.number(),
-    weight: Type.number(),
+    weight: Type.mixed(),
     units: Type.string({ enum: unitsEnum })
   }
 );
 
 const WodSchema = createSchema(
   {
+
     created: Type.date({default: Date.now() as any}),
-    // ...MovementSchema,
     type: Type.string({ required: true, enum: typeEnum }),
     movement: Type.string(),
     time: Type.string(),
-    reps: Type.number(),
+    reps: Type.mixed(),
     sets: Type.number(),
     rounds: Type.number(),
-    cals: Type.number(),
+    cals: Type.string(),
     distance: Type.number(),
-    weight: Type.number(),
+    weight: Type.mixed(),
     units: Type.string({ enum: unitsEnum }),
     source: Type.string(),
     section: Type.string({ required: true, enum: sectionEnum }),
