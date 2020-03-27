@@ -9,6 +9,7 @@ class MongoService {
     const DB_HOST = functions.config().mongo.host;
     const DB_NAME = functions.config().mongo.name;
     const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
+    // tslint:disable-next-line:no-floating-promises
     mongoose.connect(uri, {
       useNewUrlParser: true
     }, (err) => {

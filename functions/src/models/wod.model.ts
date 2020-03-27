@@ -20,7 +20,7 @@ const MovementSchema = createSchema(
   }
 );
 
-const WodSchema = createSchema(
+export const WodSchema = createSchema(
   {
 
     created: Type.date({default: Date.now() as any}),
