@@ -3,7 +3,7 @@ import { addUser } from '../controllers/user.controller';
 import { UserDoc } from '../models/user.model';
 import mongoService from '../services/MongoService';
 
-exports.createProfile = functions.auth
+const addFunction = functions.auth
   .user()
   .onCreate(async ({uid, email, displayName}) => {
     mongoService.status();
@@ -16,3 +16,5 @@ exports.createProfile = functions.auth
     });
     return user;
   });
+
+export default addFunction;
