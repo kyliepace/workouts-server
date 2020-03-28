@@ -1,9 +1,9 @@
 {
   "mongo": {
     "password": "S37z#dWhC7",
-    "user": "kpace",
     "host": "ds029640.mlab.com:29640",
-    "name": "cf-anywhere"
+    "name": "cf-anywhere",
+    "user": "kpace"
   },
   "prod": {
     "host": "https://us-central1-workouts-f919c.cloudfunctions.net"
