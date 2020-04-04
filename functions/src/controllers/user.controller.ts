@@ -15,11 +15,32 @@ export async function getUser(uid: string): Promise<any> {
 }
 
 export async function bookmarkWod({wod, uid}: {wod: WodProps, uid: string}): Promise<any>{
+  console.log('wod: ', wod);
+  console.log('uid: ', uid);
   const updatedUser = await User.findOneAndUpdate({ uid }, {
     $addToSet: {
       bookmarked_wods: wod,
       bookmarked_wod_ids: wod._id
     }
+  }, {
+    projection: {
+      _id: false
+    },
+    new: true
   });
   return updatedUser;
+}
+
+export async function unbookmarkWod(body: { wod_id: string, uid: string}): Promise<any>{
+  return User.findOneAndUpdate({ uid: body.uid }, {
+    $pull: {
+      bookmarked_wods: {
+        _id: body.wod_id
+      }, 
+      bookmarked_wod_ids: body.wod_id
+    }
+  }, {
+    projection: { _id: false},
+    new: true
+  })
 }
