@@ -8,7 +8,7 @@ const getFunction = functions.https.onRequest(async (request: Request, response:
   console.log('get wods')
   MongoService.status();
   const wods : WodDoc[] = await getWods();
-  response.status(200).send(wods);
+  response.status(200).json(wods);
 });
 
 export default getFunction;

@@ -9,6 +9,11 @@ export async function addUser(user: ICreateUser): Promise<any> {
   return newUser;
 }
 
+export async function getUser(uid: string): Promise<any> {
+  const user = await User.findOne({ uid }).lean();
+  return user;
+}
+
 export async function bookmarkWod({wod, uid}: {wod: WodProps, uid: string}): Promise<any>{
   const updatedUser = await User.findOneAndUpdate({ uid }, {
     $addToSet: {

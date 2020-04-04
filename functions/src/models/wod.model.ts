@@ -8,6 +8,7 @@ const sectionEnum = ['warmup', 'skill', 'barbell', 'accessory', 'wod'] as const;
 const MovementSchema = createSchema(
   {
     type: Type.string({ required: true, enum: typeEnum }),
+    every: Type.string(), // every -- minute on the minute
     movement: Type.string(),
     time: Type.string(),
     reps: Type.mixed(),
@@ -30,7 +31,7 @@ export const WodSchema = createSchema(
     reps: Type.mixed(),
     sets: Type.number(),
     rounds: Type.number(),
-    cals: Type.string(),
+    cals: Type.number(),
     distance: Type.number(),
     weight: Type.mixed(),
     units: Type.string({ enum: unitsEnum }),

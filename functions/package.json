@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "tsc",
+    "build": "NODE_ENV=production tsc",
     "serve": "firebase serve --only functions",
     "dev": "firebase functions:config:get > .runtimeconfig.json && npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",

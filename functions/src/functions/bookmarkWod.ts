@@ -10,7 +10,7 @@ const addFunction = functions.https.onRequest(async (request: Request, response:
   console.log('req.body: ', request.body);
   const user : UserDoc = await bookmarkWod(request.body);
   console.log('saved: ', user);
-  response.status(200).send(user);
+  response.status(200).json(user);
 });
 
 export default addFunction;

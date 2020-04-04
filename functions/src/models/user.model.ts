@@ -11,6 +11,7 @@ const UserSchema = createSchema({
   uid: Type.string({required: true}),
   name: Type.string(),
   email: Type.string(),
+  isAdmin: Type.boolean({required: true, default: false}),
   admin: Type.boolean({required: true, default: false}),
   bookmarked_wods: Type.array().of(WodSchema),
   bookmarked_wod_ids: Type.array().of(
